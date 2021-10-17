@@ -339,9 +339,9 @@ subroutine DIPOLE_driver(Xen,Xk,Xq,Dip)
         !
         do iv=Dip%ib(1),Dip%ib_lim(1)
           if(iv>=Dip%ib_lim(2)) then
-            DIP_iR(:,iv,iv,ik_mem,i_sp_pol)=cmplx(0.,aimag(DIP_iR(:,iv,iv,ik_mem,i_sp_pol)),SP)
+            !DIP_iR(:,iv,iv,ik_mem,i_sp_pol)=cmplx(0.,aimag(DIP_iR(:,iv,iv,ik_mem,i_sp_pol)),SP)
             DIP_P (:,iv,iv,ik_mem,i_sp_pol)=cmplx( real(DIP_P(:,iv,iv,ik_mem,i_sp_pol)),0. ,SP)
-            DIP_v (:,iv,iv,ik_mem,i_sp_pol)=cmplx( real(DIP_v(:,iv,iv,ik_mem,i_sp_pol)),0. ,SP)
+            !DIP_v (:,iv,iv,ik_mem,i_sp_pol)=cmplx( real(DIP_v(:,iv,iv,ik_mem,i_sp_pol)),0. ,SP)
             !
             ! Warning: if n_sp_pol==2 DIP_spin(iv,iv) is not the expectation value but <iv up |S | iv dn>
             if (compute_Spin_dipoles.and.(.not.n_sp_pol==2) ) &
@@ -360,9 +360,9 @@ subroutine DIPOLE_driver(Xen,Xk,Xq,Dip)
           !
           do ic=iv+1,Dip%ib(2)
             if( iv>=Dip%ib_lim(2) .and. ic<=Dip%ib_lim(1) ) then
-              DIP_iR(:,iv,ic,ik_mem,i_sp_pol) = -conjg(DIP_iR(:,ic,iv,ik_mem,i_sp_pol))
+              !DIP_iR(:,iv,ic,ik_mem,i_sp_pol) = -conjg(DIP_iR(:,ic,iv,ik_mem,i_sp_pol))
               DIP_P (:,iv,ic,ik_mem,i_sp_pol) =  conjg(DIP_P (:,ic,iv,ik_mem,i_sp_pol))
-              DIP_v (:,iv,ic,ik_mem,i_sp_pol) =  conjg(DIP_v (:,ic,iv,ik_mem,i_sp_pol))
+              !DIP_v (:,iv,ic,ik_mem,i_sp_pol) =  conjg(DIP_v (:,ic,iv,ik_mem,i_sp_pol))
               if (compute_Spin_dipoles) then
                 DIP_spin(1,iv,ic,ik_mem,i_sp_pol_inv)= conjg(DIP_spin(1,ic,iv,ik_mem,i_sp_pol))
                 DIP_spin(2,iv,ic,ik_mem,i_sp_pol_inv)= conjg(DIP_spin(2,ic,iv,ik_mem,i_sp_pol))
