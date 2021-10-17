@@ -129,8 +129,8 @@ subroutine DIPOLE_shifted_grids(Xen,Xk,Dip)
    !
    if (io_err(iq)/=0) call error(' Shifted grid not found in folder "'//trim(grid_paths_vector(iq))//'" ')
    !
-   if (any( (/nkibz_save/=nkibz_shifted, wf_ncx_save/=wf_ncx_shifted/) ) ) &
-&    call error(' Shifted grid in folder "'//trim(grid_paths_vector(iq))//'": parameters not consistent')
+!   if (any( (/nkibz_save/=nkibz_shifted, wf_ncx_save/=wf_ncx_shifted/) ) ) &
+!&    call error(' Shifted grid in folder "'//trim(grid_paths_vector(iq))//'": parameters not consistent')
    !
    call DIPOLE_check_shifted_grids( Xk_shift, Xk, iq, num_shifted_grids, q_mod, grid_order)
    !
@@ -217,7 +217,8 @@ subroutine DIPOLE_shifted_grids(Xen,Xk,Dip)
          ic_min=max(iv_sh,Dip%ib_lim(2))
          if (l_X_terminator) ic_min=iv_sh
          !
-         do ic=ic_min,Dip%ib(2)
+         !do ic=ic_min,Dip%ib(2)
+         do ic=Dip%ib_lim(2),Dip%ib(2)
            !
            if(.not.PAR_IND_CON_BANDS_DIP%element_1D(ic)) cycle
            !
